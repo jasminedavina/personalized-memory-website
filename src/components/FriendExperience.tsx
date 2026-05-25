@@ -192,7 +192,7 @@ export function FriendExperience({ friend }: FriendExperienceProps) {
               </h2>
             </div>
             <div
-              className="letter-card slide-scroll p-6 text-lg leading-relaxed sm:p-8"
+              className="letter-card p-6 text-lg leading-relaxed sm:p-8"
               data-slide-interactive="true"
             >
               <div className="font-letter">
@@ -219,7 +219,7 @@ export function FriendExperience({ friend }: FriendExperienceProps) {
                 The memories we made
               </h2>
             </div>
-            <div className="slide-scroll" data-slide-interactive="true">
+            <div data-slide-interactive="true">
               <PhotoGrid photos={friend.photos} friendName={friend.name} />
             </div>
           </div>

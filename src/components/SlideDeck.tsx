@@ -321,6 +321,7 @@ export function SlideDeck({
         <motion.div
           key={slide.id}
           className="scrapbook-slide"
+          data-slide-id={slide.id}
           custom={{ direction, transitionStyle }}
           variants={slideVariants}
           initial="enter"

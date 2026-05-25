@@ -937,17 +937,34 @@ html {
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   padding: clamp(24px, 6vw, 52px);
 }
 
 .scrapbook-slide-inner {
   width: min(100%, 960px);
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 42, 40, 0.2) transparent;
   display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: stretch;
+}
+
+.scrapbook-slide-inner::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrapbook-slide-inner::-webkit-scrollbar-thumb {
+  background: rgba(59, 42, 40, 0.2);
+  border-radius: 999px;
 }
 
 .scrapbook-cover-page,
@@ -960,6 +977,85 @@ html {
   flex-direction: column;
   justify-content: center;
   gap: 24px;
+}
+
+.scrapbook-slide[data-slide-id="cover"],
+.scrapbook-slide[data-slide-id="friends"] {
+  padding: 0;
+}
+
+.scrapbook-slide[data-slide-id="cover"] .scrapbook-slide-inner,
+.scrapbook-slide[data-slide-id="friends"] .scrapbook-slide-inner {
+  padding-right: 0;
+  overflow: hidden;
+}
+
+.home-fullscreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.home-cover-bg,
+.home-choice-bg {
+  position: relative;
+  background-image: url("/photos/main%20page.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+}
+
+.home-choice-bg {
+  background-image: url("/photos/choices.png");
+}
+
+.choice-typing {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 18px;
+  max-width: min(90%, 420px);
+  pointer-events: none;
+}
+
+.choice-click-map {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 0.9fr 1fr 1fr 1fr;
+  gap: 6%;
+  padding: 18% 10% 12%;
+  pointer-events: none;
+}
+
+.choice-row {
+  display: grid;
+  gap: 8%;
+  align-items: center;
+}
+
+.choice-row-two {
+  grid-template-columns: repeat(2, 1fr);
+  width: 75%;
+  justify-self: center;
+}
+
+.choice-row-three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.choice-cell {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  pointer-events: auto;
+  background: transparent;
 }
 
 .scrapbook-nav {
