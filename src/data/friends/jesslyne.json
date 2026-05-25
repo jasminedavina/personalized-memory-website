@@ -1,0 +1,43 @@
+{
+  "slug": "jesslyne",
+  "name": "Jesslyne",
+  "passcode": "jesslyne",
+  "letter": [
+    "Dear Jesslyne,",
+    "Thank you for your warmth and the way you listen.",
+    "Your friendship made every season feel brighter.",
+    "This page is a small thank you for all the care."
+  ],
+  "photos": [
+    "/photos/memory-1.svg",
+    "/photos/memory-2.svg",
+    "/photos/memory-4.svg"
+  ],
+  "timeline": [
+    {
+      "year": "2022",
+      "text": "Met through a shared class."
+    },
+    {
+      "year": "2023",
+      "text": "Study nights and cafe breaks."
+    },
+    {
+      "year": "2025",
+      "text": "Trips and long conversations."
+    },
+    {
+      "year": "2026",
+      "text": "Graduation and new journeys."
+    }
+  ],
+  "music": "/music/letter.mp3",
+  "farewell": "Thank you for being by my side.",
+  "theme": {
+    "background": "#F7F2FF",
+    "foreground": "#231E2F",
+    "muted": "#5D566D",
+    "accent": "#C3A1FF",
+    "card": "#E6D7FF"
+  }
+}

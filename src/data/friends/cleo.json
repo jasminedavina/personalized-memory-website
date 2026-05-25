@@ -1,0 +1,43 @@
+{
+  "slug": "cleo",
+  "name": "Cleo",
+  "passcode": "cleo",
+  "letter": [
+    "Dear Cleo,",
+    "Thank you for your gentle kindness and steady support.",
+    "You always know how to make people feel at home.",
+    "This letter is a small piece of my gratitude."
+  ],
+  "photos": [
+    "/photos/memory-1.svg",
+    "/photos/memory-2.svg",
+    "/photos/memory-3.svg"
+  ],
+  "timeline": [
+    {
+      "year": "2022",
+      "text": "We met over shared assignments."
+    },
+    {
+      "year": "2023",
+      "text": "Group projects and late nights."
+    },
+    {
+      "year": "2025",
+      "text": "Quiet cafes and long talks."
+    },
+    {
+      "year": "2026",
+      "text": "Graduation and fresh starts."
+    }
+  ],
+  "music": "/music/letter.mp3",
+  "farewell": "I am grateful for you, always.",
+  "theme": {
+    "background": "#F4F9EB",
+    "foreground": "#283022",
+    "muted": "#5E6C52",
+    "accent": "#A6D08E",
+    "card": "#DDECCB"
+  }
+}

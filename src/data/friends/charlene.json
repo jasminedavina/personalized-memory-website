@@ -1,0 +1,43 @@
+{
+  "slug": "charlene",
+  "name": "Charlene",
+  "passcode": "charlene",
+  "letter": [
+    "Dear Charlene,",
+    "Thank you for the calm energy you bring everywhere.",
+    "Your kindness turns ordinary days into warm memories.",
+    "This letter holds the moments I want to keep close."
+  ],
+  "photos": [
+    "/photos/memory-2.svg",
+    "/photos/memory-3.svg",
+    "/photos/memory-4.svg"
+  ],
+  "timeline": [
+    {
+      "year": "2021",
+      "text": "We met during orientation week."
+    },
+    {
+      "year": "2022",
+      "text": "Coffee breaks between long studio sessions."
+    },
+    {
+      "year": "2024",
+      "text": "Shared playlists and sunset walks."
+    },
+    {
+      "year": "2026",
+      "text": "Graduation day and heartfelt hugs."
+    }
+  ],
+  "music": "/music/letter.mp3",
+  "farewell": "I am grateful for you. Thank you for everything.",
+  "theme": {
+    "background": "#F3F0FF",
+    "foreground": "#231F2E",
+    "muted": "#5E5A72",
+    "accent": "#BCA7FF",
+    "card": "#E2D9FF"
+  }
+}

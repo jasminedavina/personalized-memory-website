@@ -1,0 +1,43 @@
+{
+  "slug": "une",
+  "name": "Une",
+  "passcode": "une",
+  "letter": [
+    "Dear Une,",
+    "Thank you for the bright energy you bring everywhere.",
+    "Your thoughtfulness always makes me feel seen.",
+    "I hope this letter carries our memories forward."
+  ],
+  "photos": [
+    "/photos/memory-1.svg",
+    "/photos/memory-2.svg",
+    "/photos/memory-4.svg"
+  ],
+  "timeline": [
+    {
+      "year": "2022",
+      "text": "Shared notes and study sessions."
+    },
+    {
+      "year": "2023",
+      "text": "Weekend markets and cafe breaks."
+    },
+    {
+      "year": "2025",
+      "text": "Trips, photos, and unforgettable sunsets."
+    },
+    {
+      "year": "2026",
+      "text": "Graduation and a new chapter."
+    }
+  ],
+  "music": "/music/letter.mp3",
+  "farewell": "Thanks for the joy you bring. I will always remember.",
+  "theme": {
+    "background": "#FFF6E6",
+    "foreground": "#2C2015",
+    "muted": "#7A5A3A",
+    "accent": "#F6B47B",
+    "card": "#FBE2C6"
+  }
+}

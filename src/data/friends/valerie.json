@@ -1,0 +1,43 @@
+{
+  "slug": "valerie",
+  "name": "Valerie",
+  "passcode": "valerie",
+  "letter": [
+    "Dear Valerie,",
+    "Thank you for your calm confidence and steady support.",
+    "Our memories together always feel like quiet comfort.",
+    "This letter holds that gratitude."
+  ],
+  "photos": [
+    "/photos/memory-2.svg",
+    "/photos/memory-3.svg",
+    "/photos/memory-4.svg"
+  ],
+  "timeline": [
+    {
+      "year": "2021",
+      "text": "Met in our first semester."
+    },
+    {
+      "year": "2023",
+      "text": "Shared study sessions and playlists."
+    },
+    {
+      "year": "2024",
+      "text": "Weekend trips and late-night talks."
+    },
+    {
+      "year": "2026",
+      "text": "Graduation and warm goodbyes."
+    }
+  ],
+  "music": "/music/letter.mp3",
+  "farewell": "Thank you for being part of my life.",
+  "theme": {
+    "background": "#F1F5FF",
+    "foreground": "#1E2635",
+    "muted": "#51607A",
+    "accent": "#9FB6FF",
+    "card": "#DCE5FF"
+  }
+}

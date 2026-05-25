@@ -1,0 +1,43 @@
+{
+  "slug": "nadya",
+  "name": "Nadya",
+  "passcode": "nadya",
+  "letter": [
+    "Dear Nadya,",
+    "Thank you for your warmth and easy smile.",
+    "You always made the hard days feel softer.",
+    "This page is a quiet thank you for everything."
+  ],
+  "photos": [
+    "/photos/memory-2.svg",
+    "/photos/memory-3.svg",
+    "/photos/memory-4.svg"
+  ],
+  "timeline": [
+    {
+      "year": "2021",
+      "text": "Met in our first studio class."
+    },
+    {
+      "year": "2023",
+      "text": "Shared playlists and late-night chats."
+    },
+    {
+      "year": "2024",
+      "text": "Weekend trips and long conversations."
+    },
+    {
+      "year": "2026",
+      "text": "Graduation day and new dreams."
+    }
+  ],
+  "music": "/music/letter.mp3",
+  "farewell": "Thank you for being part of my journey.",
+  "theme": {
+    "background": "#E9F6FF",
+    "foreground": "#1D2A35",
+    "muted": "#4E6678",
+    "accent": "#85C4F2",
+    "card": "#CFE9FF"
+  }
+}

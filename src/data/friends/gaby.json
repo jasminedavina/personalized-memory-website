@@ -1,0 +1,43 @@
+{
+  "slug": "gaby",
+  "name": "Gaby",
+  "passcode": "gaby",
+  "letter": [
+    "Dear Gaby,",
+    "Thank you for the warmth and laughter you bring.",
+    "You make even ordinary days feel special.",
+    "This letter is a small reminder of our memories."
+  ],
+  "photos": [
+    "/photos/memory-2.svg",
+    "/photos/memory-3.svg",
+    "/photos/memory-4.svg"
+  ],
+  "timeline": [
+    {
+      "year": "2021",
+      "text": "Met through a shared project."
+    },
+    {
+      "year": "2023",
+      "text": "Weekend trips and shared playlists."
+    },
+    {
+      "year": "2024",
+      "text": "Late-night talks and celebrations."
+    },
+    {
+      "year": "2026",
+      "text": "Graduation and new adventures."
+    }
+  ],
+  "music": "/music/letter.mp3",
+  "farewell": "I am grateful for every memory with you.",
+  "theme": {
+    "background": "#F0FFF7",
+    "foreground": "#203026",
+    "muted": "#4E6E5F",
+    "accent": "#8ADDB8",
+    "card": "#D6F7E7"
+  }
+}

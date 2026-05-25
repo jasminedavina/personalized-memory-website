@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="grad-1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f2937" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="36" fill="url(#grad-1)" />
+  <circle cx="560" cy="190" r="120" fill="#93c5fd" opacity="0.5" />
+  <circle cx="260" cy="380" r="160" fill="#60a5fa" opacity="0.35" />
+  <text x="80" y="520" font-family="Arial, sans-serif" font-size="48" fill="#e2e8f0">
+    Memory 01
+  </text>
+</svg>

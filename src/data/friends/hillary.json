@@ -1,0 +1,43 @@
+{
+  "slug": "hillary",
+  "name": "Hillary",
+  "passcode": "hillary",
+  "letter": [
+    "Dear Hillary,",
+    "Thank you for the gentle encouragement you always give.",
+    "Our quiet moments together are some of my favorites.",
+    "This page is a small reminder of everything I treasure about us."
+  ],
+  "photos": [
+    "/photos/memory-1.svg",
+    "/photos/memory-2.svg",
+    "/photos/memory-3.svg"
+  ],
+  "timeline": [
+    {
+      "year": "2022",
+      "text": "Shared our first class and became instant friends."
+    },
+    {
+      "year": "2023",
+      "text": "Long walks and late-night talks."
+    },
+    {
+      "year": "2024",
+      "text": "Small adventures and big laughs."
+    },
+    {
+      "year": "2026",
+      "text": "Graduation and new beginnings."
+    }
+  ],
+  "music": "/music/letter.mp3",
+  "farewell": "Thank you for being in my story. I will always cheer for you.",
+  "theme": {
+    "background": "#FDEFF4",
+    "foreground": "#2C1B22",
+    "muted": "#7A5C68",
+    "accent": "#F5A8C6",
+    "card": "#FAD9E6"
+  }
+}

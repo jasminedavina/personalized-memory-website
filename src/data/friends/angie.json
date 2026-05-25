@@ -1,0 +1,43 @@
+{
+  "slug": "angie",
+  "name": "Angie",
+  "passcode": "angie",
+  "letter": [
+    "Dear Angie,",
+    "Thank you for your bright optimism and big heart.",
+    "You always make the room feel lighter.",
+    "This page is a small thank you for all the joy."
+  ],
+  "photos": [
+    "/photos/memory-1.svg",
+    "/photos/memory-3.svg",
+    "/photos/memory-4.svg"
+  ],
+  "timeline": [
+    {
+      "year": "2022",
+      "text": "First shared class and instant laughs."
+    },
+    {
+      "year": "2023",
+      "text": "Weekend brunches and photo walks."
+    },
+    {
+      "year": "2024",
+      "text": "Trips, concerts, and new traditions."
+    },
+    {
+      "year": "2026",
+      "text": "Graduation and a new chapter."
+    }
+  ],
+  "music": "/music/letter.mp3",
+  "farewell": "Thank you for bringing so much light into my life.",
+  "theme": {
+    "background": "#FFF0F0",
+    "foreground": "#2C1C1C",
+    "muted": "#7A4E4E",
+    "accent": "#F3A1A1",
+    "card": "#FAD7D7"
+  }
+}
