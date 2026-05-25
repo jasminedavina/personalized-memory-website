@@ -69,24 +69,27 @@ export function PasscodeGate({
     return <>{children}</>;
   }
 
-  const stageStyle = passcodeBackground
-    ? {
-        backgroundImage: `url(${passcodeBackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }
-    : undefined;
+  const hasBackground = Boolean(passcodeBackground);
 
   return (
     <div
       className={`ambient-bg passcode-stage flex min-h-screen items-center justify-center bg-background px-6 text-foreground ${
-        passcodeBackground ? "passcode-has-bg" : ""
+        hasBackground ? "passcode-has-bg" : ""
       }`}
-      style={stageStyle}
     >
+      {hasBackground ? (
+        <div className="passcode-background" aria-hidden="true">
+          <div className="passcode-frame">
+            <img
+              src={passcodeBackground}
+              alt=""
+              className="passcode-image"
+            />
+          </div>
+        </div>
+      ) : null}
       <motion.div
-        className="w-full max-w-md"
+        className="passcode-content w-full max-w-md"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
