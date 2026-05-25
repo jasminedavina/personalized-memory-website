@@ -2,6 +2,7 @@
   "slug": "arman",
   "name": "Arman",
   "passcode": "arman",
+  "passcodeBackground": "/photos/armanmain.png",
   "letter": [
     "Dear Arman,",
     "Thank you for always being steady and supportive.",

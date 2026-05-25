@@ -2,6 +2,7 @@
   "slug": "angie",
   "name": "Angie",
   "passcode": "angie",
+  "passcodeBackground": "/photos/angiemain.png",
   "letter": [
     "Dear Angie,",
     "Thank you for your bright optimism and big heart.",

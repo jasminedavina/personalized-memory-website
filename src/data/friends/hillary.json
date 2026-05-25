@@ -3,6 +3,7 @@
   "name": "Hillary",
   "passcode": "hillary",
   "passcodeBackground": "/photos/hilimain.png",
+  "redirectUrl": "/hillary/foto",
   "letter": [
     "Dear Hillary,",
     "Thank you for the gentle encouragement you always give.",

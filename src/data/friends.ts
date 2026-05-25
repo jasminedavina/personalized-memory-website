@@ -33,6 +33,7 @@ export type FriendData = {
   name: string;
   passcode: string;
   passcodeBackground?: string;
+  redirectUrl?: string;
   letter: string[];
   photos: string[];
   timeline: FriendTimelineItem[];

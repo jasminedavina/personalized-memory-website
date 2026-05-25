@@ -2,6 +2,7 @@
   "slug": "nadya",
   "name": "Nadya",
   "passcode": "nadya",
+  "passcodeBackground": "/photos/nadyamain.png",
   "letter": [
     "Dear Nadya,",
     "Thank you for your warmth and easy smile.",

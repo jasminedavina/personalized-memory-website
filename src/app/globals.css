@@ -1110,6 +1110,56 @@ html {
   pointer-events: none;
 }
 
+.video-stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 32px;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.video-frame {
+  width: min(100%, 520px);
+  background: #fff;
+  border-radius: 26px;
+  padding: 8px;
+  box-shadow: 0 20px 36px rgba(59, 42, 40, 0.18);
+}
+
+.video-link {
+  position: relative;
+  display: block;
+}
+
+.video-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.video-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+
+.video-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
 .passcode-stage {
   position: relative;
 }

@@ -1,14 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 type PasscodeGateProps = {
   passcode: string;
   friendName: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onUnlock?: () => void;
   passcodeBackground?: string;
+  redirectUrl?: string;
+  redirectMessage?: string;
 };
 
 function normalize(value: string): string {
@@ -21,10 +24,14 @@ export function PasscodeGate({
   children,
   onUnlock,
   passcodeBackground,
+  redirectUrl,
+  redirectMessage = "Opening your Canva scrapbook...",
 }: PasscodeGateProps) {
   const [value, setValue] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [error, setError] = useState("");
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const router = useRouter();
 
   const normalizedPasscode = useMemo(() => normalize(passcode), [passcode]);
 
@@ -42,11 +49,23 @@ export function PasscodeGate({
     }
 
     setError("");
+    if (redirectUrl) {
+      setIsRedirecting(true);
+      onUnlock?.();
+      window.setTimeout(() => {
+        if (redirectUrl.startsWith("/")) {
+          router.push(redirectUrl);
+          return;
+        }
+        window.location.assign(redirectUrl);
+      }, 150);
+      return;
+    }
     setUnlocked(true);
     onUnlock?.();
   };
 
-  if (unlocked) {
+  if (unlocked && children) {
     return <>{children}</>;
   }
 
@@ -86,28 +105,34 @@ export function PasscodeGate({
             case-insensitive.
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-6 space-y-3">
-            <input
-              type="password"
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
-              placeholder="Passcode"
-              className="w-full rounded-xl border border-foreground/10 bg-background/80 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none"
-            />
-            {error ? (
-              <p className="text-xs text-rose-500">{error}</p>
-            ) : (
-              <p className="text-xs text-muted">
-                Tip: Check the friend JSON file to update the passcode.
-              </p>
-            )}
-            <button
-              type="submit"
-              className="w-full rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-foreground transition hover:opacity-90"
-            >
-              Open letter
-            </button>
-          </form>
+          {isRedirecting ? (
+            <div className="mt-6 space-y-3">
+              <p className="text-sm text-muted">{redirectMessage}</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="mt-6 space-y-3">
+              <input
+                type="password"
+                value={value}
+                onChange={(event) => setValue(event.target.value)}
+                placeholder="Passcode"
+                className="w-full rounded-xl border border-foreground/10 bg-background/80 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none"
+              />
+              {error ? (
+                <p className="text-xs text-rose-500">{error}</p>
+              ) : (
+                <p className="text-xs text-muted">
+                  Tip: Check the friend JSON file to update the passcode.
+                </p>
+              )}
+              <button
+                type="submit"
+                className="w-full rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-foreground transition hover:opacity-90"
+              >
+                Open letter
+              </button>
+            </form>
+          )}
         </div>
       </motion.div>
     </div>
