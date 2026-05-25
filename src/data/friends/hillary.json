@@ -2,6 +2,7 @@
   "slug": "hillary",
   "name": "Hillary",
   "passcode": "hillary",
+  "passcodeBackground": "/photos/hilimain.png",
   "letter": [
     "Dear Hillary,",
     "Thank you for the gentle encouragement you always give.",
@@ -34,10 +35,10 @@
   "music": "/music/letter.mp3",
   "farewell": "Thank you for being in my story. I will always cheer for you.",
   "theme": {
-    "background": "#FDEFF4",
-    "foreground": "#2C1B22",
-    "muted": "#7A5C68",
-    "accent": "#F5A8C6",
-    "card": "#FAD9E6"
+    "background": "#EAF4FF",
+    "foreground": "#1E2A3A",
+    "muted": "#5E738A",
+    "accent": "#A7D7FF",
+    "card": "#F5FAFF"
   }
 }

@@ -32,6 +32,7 @@ export type FriendData = {
   slug: string;
   name: string;
   passcode: string;
+  passcodeBackground?: string;
   letter: string[];
   photos: string[];
   timeline: FriendTimelineItem[];

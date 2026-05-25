@@ -8,6 +8,7 @@ type PasscodeGateProps = {
   friendName: string;
   children: React.ReactNode;
   onUnlock?: () => void;
+  passcodeBackground?: string;
 };
 
 function normalize(value: string): string {
@@ -19,6 +20,7 @@ export function PasscodeGate({
   friendName,
   children,
   onUnlock,
+  passcodeBackground,
 }: PasscodeGateProps) {
   const [value, setValue] = useState("");
   const [unlocked, setUnlocked] = useState(false);
@@ -48,8 +50,22 @@ export function PasscodeGate({
     return <>{children}</>;
   }
 
+  const stageStyle = passcodeBackground
+    ? {
+        backgroundImage: `url(${passcodeBackground})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }
+    : undefined;
+
   return (
-    <div className="ambient-bg flex min-h-screen items-center justify-center bg-background px-6 text-foreground">
+    <div
+      className={`ambient-bg passcode-stage flex min-h-screen items-center justify-center bg-background px-6 text-foreground ${
+        passcodeBackground ? "passcode-has-bg" : ""
+      }`}
+      style={stageStyle}
+    >
       <motion.div
         className="w-full max-w-md"
         initial={{ opacity: 0, y: 20 }}

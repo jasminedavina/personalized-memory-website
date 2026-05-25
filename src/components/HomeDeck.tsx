@@ -12,18 +12,39 @@ type HomeDeckProps = {
 };
 
 export function HomeDeck({ friends }: HomeDeckProps) {
-  const topRow = friends.slice(0, 2);
-  const rest = friends.slice(2);
-  const rows: FriendData[][] = [];
-  for (let i = 0; i < rest.length; i += 3) {
-    rows.push(rest.slice(i, i + 3));
-  }
+  const friendsBySlug = friends.reduce<Record<string, FriendData>>(
+    (acc, friend) => {
+      acc[friend.slug] = friend;
+      return acc;
+    },
+    {}
+  );
+
+  const choiceRows: Array<Array<string>> = [
+    ["angie", "hillary"],
+    ["gaby", "valerie", "arman"],
+    ["nadya", "cleo", "jesslyne"],
+    ["charlene", "une", "me"],
+  ];
 
   const slides: SlideDefinition[] = [
     {
       id: "cover",
       transition: "bouquet-bloom",
-      render: () => <div className="home-fullscreen home-cover-bg" />,
+      render: () => (
+        <div className="home-fullscreen home-cover-bg">
+          <div className="home-frame">
+            <div className="home-image-wrap">
+              <img
+                src="/photos/main page.png"
+                alt=""
+                className="home-image"
+                aria-hidden="true"
+              />
+            </div>
+          </div>
+        </div>
+      ),
     },
     {
       id: "friends",
@@ -33,38 +54,55 @@ export function HomeDeck({ friends }: HomeDeckProps) {
           className="home-fullscreen home-choice-bg"
           data-slide-interactive="true"
         >
-          <div className="choice-typing text-center">
-            <div className="font-letter text-sm text-foreground sm:text-base">
-              <TypewriterLetter
-                lines={["click your picture to open your scrapbook 💛"]}
+          <div className="home-frame">
+            <div className="home-image-wrap">
+              <img
+                src="/photos/choices.png"
+                alt=""
+                className="home-image"
+                aria-hidden="true"
               />
-            </div>
-          </div>
-          <div className="choice-click-map" data-slide-interactive="true">
-            <div className="choice-row choice-row-two">
-              {topRow.map((friend) => (
-                <Link
-                  key={friend.slug}
-                  href={`/${friend.slug}`}
-                  className="choice-cell"
-                  aria-label={`Open ${friend.name}'s scrapbook`}
-                  data-slide-interactive="true"
-                />
-              ))}
-            </div>
-            {rows.map((row, rowIndex) => (
-              <div key={`row-${rowIndex}`} className="choice-row choice-row-three">
-                {row.map((friend) => (
-                  <Link
-                    key={friend.slug}
-                    href={`/${friend.slug}`}
-                    className="choice-cell"
-                    aria-label={`Open ${friend.name}'s scrapbook`}
-                    data-slide-interactive="true"
+              <div className="choice-typing text-center">
+                <div className="font-letter text-sm text-foreground sm:text-base">
+                  <TypewriterLetter
+                    lines={["click your picture to open your scrapbook 💛"]}
                   />
+                </div>
+              </div>
+              <div className="choice-click-map" data-slide-interactive="true">
+                <div className="choice-row choice-row-spacer" />
+                {choiceRows.map((row, rowIndex) => (
+                  <div
+                    key={`row-${rowIndex}`}
+                    className={`choice-row ${
+                      rowIndex === 0 ? "choice-row-two" : "choice-row-three"
+                    }`}
+                  >
+                    {row.map((slug) => {
+                      if (slug === "me" || !friendsBySlug[slug]) {
+                        return (
+                          <span
+                            key={`placeholder-${slug}`}
+                            className="choice-cell placeholder"
+                            aria-hidden="true"
+                          />
+                        );
+                      }
+                      const friend = friendsBySlug[slug];
+                      return (
+                        <Link
+                          key={friend.slug}
+                          href={`/${friend.slug}`}
+                          className="choice-cell"
+                          aria-label={`Open ${friend.name}'s scrapbook`}
+                          data-slide-interactive="true"
+                        />
+                      );
+                    })}
+                  </div>
                 ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       ),

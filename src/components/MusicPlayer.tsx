@@ -21,6 +21,7 @@ type MusicPlayerProps = {
   variant?: "panel" | "floating";
   className?: string;
   onPlayingChange?: (isPlaying: boolean) => void;
+  showControls?: boolean;
 };
 
 export const MusicPlayer = forwardRef<MusicPlayerHandle, MusicPlayerProps>(
@@ -32,6 +33,7 @@ export const MusicPlayer = forwardRef<MusicPlayerHandle, MusicPlayerProps>(
       variant = "panel",
       className,
       onPlayingChange,
+      showControls = true,
     },
     ref
   ) {
@@ -178,7 +180,7 @@ export const MusicPlayer = forwardRef<MusicPlayerHandle, MusicPlayerProps>(
     <div
       className={`music-player ${isPlaying ? "is-playing" : ""} ${
         isFloating ? "is-floating" : ""
-      } ${className ?? ""}`}
+      } ${showControls ? "" : "no-controls"} ${className ?? ""}`}
     >
       <div className="music-header">
         <p className="text-xs uppercase tracking-[0.2em] text-muted">{title}</p>
@@ -198,13 +200,15 @@ export const MusicPlayer = forwardRef<MusicPlayerHandle, MusicPlayerProps>(
             {isPlaying ? "Now playing" : "Ready to play"}
           </p>
         </div>
-        <button
-          type="button"
-          onClick={togglePlayback}
-          className="music-toggle"
-        >
-          {isPlaying ? "Pause" : "Play"}
-        </button>
+        {showControls ? (
+          <button
+            type="button"
+            onClick={togglePlayback}
+            className="music-toggle"
+          >
+            {isPlaying ? "Pause" : "Play"}
+          </button>
+        ) : null}
       </div>
       <div className="cassette">
         <div className="cassette-reel" />
@@ -213,7 +217,7 @@ export const MusicPlayer = forwardRef<MusicPlayerHandle, MusicPlayerProps>(
         </p>
         <div className="cassette-reel" />
       </div>
-      {autoPlayError ? (
+      {showControls && autoPlayError ? (
         <p className="text-xs text-muted">{autoPlayError}</p>
       ) : null}
       <audio ref={audioRef} src={src} preload="none" loop />

@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 type EnvelopeIntroProps = {
   friendName: string;
   previewLines?: [string, string, string];
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onOpen?: () => void;
+  onContinue?: () => void;
 };
 
 export function EnvelopeIntro({
@@ -18,6 +19,7 @@ export function EnvelopeIntro({
   ],
   children,
   onOpen,
+  onContinue,
 }: EnvelopeIntroProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [showContinue, setShowContinue] = useState(false);
@@ -35,7 +37,7 @@ export function EnvelopeIntro({
     return () => window.clearTimeout(timer);
   }, [isOpen]);
 
-  if (showContent) {
+  if (showContent && children) {
     return <>{children}</>;
   }
 
@@ -44,6 +46,11 @@ export function EnvelopeIntro({
       setIsOpen(true);
       onOpen?.();
     }
+  };
+
+  const handleContinue = () => {
+    setShowContent(true);
+    onContinue?.();
   };
 
   return (
@@ -59,7 +66,7 @@ export function EnvelopeIntro({
         className={`envelope ${isOpen ? "open" : "close"}`}
         onClick={() => {
           if (showContinue) {
-            setShowContent(true);
+            handleContinue();
             return;
           }
           handleOpen();
@@ -69,7 +76,7 @@ export function EnvelopeIntro({
         onKeyDown={(event) => {
           if (event.key === "Enter" || event.key === " ") {
             if (showContinue) {
-              setShowContent(true);
+              handleContinue();
               return;
             }
             handleOpen();
@@ -102,7 +109,7 @@ export function EnvelopeIntro({
             }
 
             if (showContinue) {
-              setShowContent(true);
+              handleContinue();
             }
           }}
           className="rounded-full border border-foreground/15 bg-card px-6 py-2 text-sm font-semibold text-foreground transition hover:opacity-90 disabled:cursor-default disabled:opacity-60"
