@@ -30,6 +30,7 @@ export function GlobalAudioProvider({
 }: GlobalAudioProviderProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const fadeTimerRef = useRef<number | null>(null);
+  const targetVolume = 0.35;
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -51,13 +52,16 @@ export function GlobalAudioProvider({
       if (!audioRef.current) {
         return;
       }
-      const nextVolume = Math.min(1, audioRef.current.volume + 0.08);
+      const nextVolume = Math.min(
+        targetVolume,
+        audioRef.current.volume + 0.04
+      );
       audioRef.current.volume = nextVolume;
-      if (nextVolume >= 1) {
+      if (nextVolume >= targetVolume) {
         clearFade();
       }
     }, 120);
-  }, [clearFade]);
+  }, [clearFade, targetVolume]);
 
   const start = useCallback(() => {
     const audio = audioRef.current;

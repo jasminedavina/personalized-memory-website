@@ -1113,9 +1113,10 @@ html {
 .video-stage {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 24px 16px 32px;
+  overflow-y: auto;
   background: var(--background);
   color: var(--foreground);
 }
@@ -1163,6 +1164,8 @@ html {
 .passcode-stage {
   position: relative;
   padding: 24px 16px 32px;
+  align-items: flex-start;
+  overflow-y: auto;
 }
 
 .passcode-has-bg {
