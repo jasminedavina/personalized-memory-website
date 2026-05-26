@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fff6f0;
-  --foreground: #3b2a28;
-  --accent: #f5b8c7;
-  --muted: #7f6b63;
-  --card: #fffdf7;
+  --background: #ffffff;
+  --foreground: #1f1f1f;
+  --accent: #e6e6e6;
+  --muted: #6b6b6b;
+  --card: #ffffff;
   --paper: color-mix(in srgb, var(--card) 85%, white);
   --paper-shadow: color-mix(in srgb, var(--foreground) 18%, transparent);
   --tape: color-mix(in srgb, var(--accent) 30%, #f7d6aa);
@@ -26,14 +26,7 @@
 
 body {
   background-color: var(--background);
-  background-image: radial-gradient(
-      circle at 1px 1px,
-      rgba(59, 42, 40, 0.06) 1px,
-      transparent 0
-    ),
-    linear-gradient(135deg, #fff2f7 0%, #fff8e8 45%, #f4f8ff 100%);
-  background-size: 18px 18px, cover;
-  background-attachment: fixed;
+  background-image: none;
   color: var(--foreground);
   font-family: var(--font-body), "Nunito", "Trebuchet MS", sans-serif;
   overflow-x: hidden;
@@ -77,26 +70,8 @@ html {
 
 .scrapbook-cover::before,
 .scrapbook-cover::after {
-  content: "";
-  position: absolute;
-  width: 70px;
-  height: 22px;
-  background: var(--tape);
-  border-radius: 7px;
-  opacity: 0.8;
-  box-shadow: 0 6px 14px rgba(59, 42, 40, 0.1);
-}
-
-.scrapbook-cover::before {
-  top: -10px;
-  left: 24px;
-  transform: rotate(-8deg);
-}
-
-.scrapbook-cover::after {
-  bottom: -10px;
-  right: 28px;
-  transform: rotate(6deg);
+  content: none;
+  display: none;
 }
 
 .scrapbook-cover.open {
@@ -331,46 +306,8 @@ html {
 
 .ambient-bg::before,
 .ambient-bg::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.ambient-bg::before {
-  inset: -20% -10% auto auto;
-  width: 520px;
-  height: 520px;
-  border-radius: 999px;
-  background: radial-gradient(
-    circle at 30% 30%,
-    color-mix(in srgb, var(--accent) 60%, white) 0%,
-    transparent 70%
-  );
-  opacity: 0.45;
-  filter: blur(6px);
-  animation: floatGlow 22s ease-in-out infinite;
-}
-
-.ambient-bg::after {
-  inset: 0;
-  background-image: radial-gradient(
-      circle at 15% 20%,
-      rgba(255, 255, 255, 0.55) 0%,
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 85% 30%,
-      rgba(255, 255, 255, 0.45) 0%,
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 45% 80%,
-      rgba(255, 255, 255, 0.35) 0%,
-      transparent 45%
-    );
-  opacity: 0.35;
-  animation: drift 26s ease-in-out infinite;
+  content: none;
+  display: none;
 }
 
 .ambient-bg > * {
@@ -1110,12 +1047,128 @@ html {
   pointer-events: none;
 }
 
+.video-stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 16px 32px;
+  overflow-y: auto;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.video-frame {
+  width: min(100%, 520px);
+  background: #fff;
+  border-radius: 26px;
+  padding: 8px;
+  box-shadow: 0 20px 36px rgba(59, 42, 40, 0.18);
+}
+
+.video-link {
+  position: relative;
+  display: block;
+}
+
+.video-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.video-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+
+.video-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
 .passcode-stage {
   position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: clamp(32px, 6vw, 48px) 16px 32px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 42, 40, 0.2) transparent;
+}
+
+.passcode-stage::-webkit-scrollbar {
+  width: 6px;
+}
+
+.passcode-stage::-webkit-scrollbar-thumb {
+  background: rgba(59, 42, 40, 0.2);
+  border-radius: 999px;
 }
 
 .passcode-has-bg {
   background-color: transparent;
+}
+
+.passcode-stack {
+  position: relative;
+  width: min(100%, 520px);
+  margin: 0 auto;
+}
+
+.passcode-overlay {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.passcode-has-bg .passcode-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 20px;
+  z-index: 1;
+}
+
+.passcode-frame {
+  width: min(100%, 520px);
+  background: #fff;
+  padding: 6px;
+  border-radius: 20px;
+  box-shadow: 0 18px 32px rgba(59, 42, 40, 0.16);
+  flex-shrink: 0;
+}
+
+.passcode-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.passcode-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 .passcode-card {
@@ -1192,6 +1245,23 @@ html {
   padding: 10px 14px;
 }
 
+.theme-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 75%, white);
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--foreground));
+  color: var(--foreground);
+  box-shadow: 0 12px 20px rgba(59, 42, 40, 0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.theme-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 24px rgba(59, 42, 40, 0.18);
+}
+
 .sticker-button {
   display: inline-flex;
   align-items: center;
@@ -1216,7 +1286,8 @@ html {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: linear-gradient(135deg, #f7c3d8, #f6e7b2);
+  background: color-mix(in srgb, var(--accent) 75%, white);
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--foreground));
   padding: 12px 22px;
   font-size: 0.8rem;
   font-weight: 700;

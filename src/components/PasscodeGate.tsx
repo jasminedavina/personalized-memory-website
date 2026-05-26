@@ -1,14 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 type PasscodeGateProps = {
   passcode: string;
   friendName: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onUnlock?: () => void;
   passcodeBackground?: string;
+  redirectUrl?: string;
+  redirectMessage?: string;
 };
 
 function normalize(value: string): string {
@@ -21,14 +24,24 @@ export function PasscodeGate({
   children,
   onUnlock,
   passcodeBackground,
+  redirectUrl,
+  redirectMessage = "Opening...",
 }: PasscodeGateProps) {
   const [value, setValue] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [error, setError] = useState("");
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
-  const normalizedPasscode = useMemo(() => normalize(passcode), [passcode]);
+  const router = useRouter();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const normalizedPasscode = useMemo(
+    () => normalize(passcode),
+    [passcode]
+  );
+
+  const handleSubmit = (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
 
     if (!value.trim()) {
@@ -42,74 +55,110 @@ export function PasscodeGate({
     }
 
     setError("");
+
+    if (redirectUrl) {
+      setIsRedirecting(true);
+      onUnlock?.();
+
+      window.setTimeout(() => {
+        if (redirectUrl.startsWith("/")) {
+          router.push(redirectUrl);
+          return;
+        }
+
+        window.location.assign(redirectUrl);
+      }, 150);
+
+      return;
+    }
+
     setUnlocked(true);
     onUnlock?.();
   };
 
-  if (unlocked) {
+  if (unlocked && children) {
     return <>{children}</>;
   }
 
-  const stageStyle = passcodeBackground
-    ? {
-        backgroundImage: `url(${passcodeBackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }
-    : undefined;
+  const hasBackground = Boolean(passcodeBackground);
 
   return (
     <div
-      className={`ambient-bg passcode-stage flex min-h-screen items-center justify-center bg-background px-6 text-foreground ${
-        passcodeBackground ? "passcode-has-bg" : ""
+      className={`passcode-stage relative w-full bg-background text-foreground ${
+        hasBackground ? "passcode-has-bg" : ""
       }`}
-      style={stageStyle}
     >
-      <motion.div
-        className="w-full max-w-md"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="scrapbook-page passcode-card text-center">
-          <span className="tape tape-left" aria-hidden="true" />
-          <span className="tape tape-right" aria-hidden="true" />
-          <p className="text-xs uppercase tracking-[0.3em] text-muted">
-            Private Memory Letter
-          </p>
-          <h1 className="font-title mt-4 text-3xl font-semibold text-foreground">
-            For {friendName}
+      <div className="passcode-stack">
+        {hasBackground ? (
+          <div className="passcode-frame" aria-hidden="true">
+            <img
+              src={passcodeBackground}
+              alt=""
+              className="passcode-image"
+            />
+          </div>
+        ) : null}
+
+        <div className="passcode-overlay">
+          <motion.div
+            className="passcode-content w-full max-w-[17rem]"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <div className="scrapbook-page passcode-card mx-auto rounded-[2rem] bg-white/70 p-4 text-center shadow-2xl backdrop-blur-md">
+
+          {/* Main Title */}
+          <h1 className="text-xl font-semibold text-foreground">
+            For {friendName} ✨
           </h1>
-          <p className="mt-3 text-sm text-muted">
-            Enter the passcode to open the letter. Passcodes are
-            case-insensitive.
+
+          {/* Subtitle */}
+          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+            This little scrapbook was made just for you 🌸
+            <br />
+            Enter the passcode to continue.
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-6 space-y-3">
-            <input
-              type="password"
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
-              placeholder="Passcode"
-              className="w-full rounded-xl border border-foreground/10 bg-background/80 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none"
-            />
-            {error ? (
-              <p className="text-xs text-rose-500">{error}</p>
-            ) : (
-              <p className="text-xs text-muted">
-                Tip: Check the friend JSON file to update the passcode.
+          {isRedirecting ? (
+            <div className="mt-5">
+              <p className="text-xs text-muted-foreground">
+                {redirectMessage}
               </p>
-            )}
-            <button
-              type="submit"
-              className="w-full rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-foreground transition hover:opacity-90"
+            </div>
+          ) : (
+            <form
+              onSubmit={handleSubmit}
+              className="mt-5 space-y-3"
             >
-              Open letter
-            </button>
-          </form>
+              <input
+                type="password"
+                value={value}
+                onChange={(event) =>
+                  setValue(event.target.value)
+                }
+                placeholder="Enter your memory key..."
+                className="w-full rounded-2xl border border-white/40 bg-white/70 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none backdrop-blur-sm transition focus:border-white/70"
+              />
+
+              {error ? (
+                <p className="text-xs text-rose-500">
+                  {error}
+                </p>
+              ) : null}
+
+              <button
+                type="submit"
+                className="theme-button w-full rounded-2xl px-4 py-3 text-sm font-medium transition hover:scale-[1.02]"
+              >
+                Open Scrapbook 💌
+              </button>
+            </form>
+          )}
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

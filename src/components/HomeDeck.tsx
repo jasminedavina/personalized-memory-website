@@ -57,7 +57,7 @@ export function HomeDeck({ friends }: HomeDeckProps) {
           <div className="home-frame">
             <div className="home-image-wrap">
               <img
-                src="/photos/choices.png"
+                src="/photos/choice.png"
                 alt=""
                 className="home-image"
                 aria-hidden="true"

@@ -16,7 +16,6 @@ type TimelineProps = {
 
 const rotations = [-3, 2, -2, 4, -1, 3, -4, 1];
 const offsets = [0, 14, -6, 18, -4, 12, -8, 10];
-const emojiFallback = ["🌸", "✨", "🎀", "☕", "📸", "🫶", "🌟", "🍪"];
 
 function getDefaultWrapped(
   items: FriendTimelineItem[],
@@ -91,7 +90,7 @@ export function Timeline({ items, wrapped, friendName, photos }: TimelineProps) 
         <button
           type="button"
           onClick={handleShuffle}
-          className="rounded-full border border-foreground/10 bg-card px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition hover:opacity-90"
+          className="theme-button rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition hover:opacity-90"
         >
           Random memory shuffle
         </button>
@@ -113,7 +112,6 @@ export function Timeline({ items, wrapped, friendName, photos }: TimelineProps) 
         {stats.map((stat, index) => {
           const rotation = rotations[index % rotations.length];
           const offset = offsets[index % offsets.length];
-          const sticker = stat.emoji ?? emojiFallback[index % emojiFallback.length];
           const photo = photos.length > 0 ? photos[index % photos.length] : null;
           const style = {
             marginTop: `${offset}px`,
@@ -143,13 +141,8 @@ export function Timeline({ items, wrapped, friendName, photos }: TimelineProps) 
                 whileHover={{ scale: 1.04, rotate: rotation + 1 }}
                 whileTap={{ scale: 1.02 }}
               >
-                <span className="wrapped-tape" aria-hidden="true" />
-                <span className="wrapped-sticker" aria-hidden="true">
-                  {sticker}
-                </span>
                 {photo ? (
                   <div className="wrapped-photo" aria-hidden="true">
-                    <span className="wrapped-photo-tape" />
                     <Image
                       src={photo}
                       alt=""

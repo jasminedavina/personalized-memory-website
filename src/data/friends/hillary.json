@@ -2,6 +2,7 @@
   "slug": "hillary",
   "name": "Hillary",
   "passcode": "hillary",
+  "videoPrefix": "hili",
   "passcodeBackground": "/photos/hilimain.png",
   "letter": [
     "Dear Hillary,",
