@@ -11,7 +11,6 @@ type PhotoGridProps = {
 
 const rotations = [-4, 3, -2, 5, -1, 2];
 const offsets = [0, 16, -8, 20, -4, 12];
-const stickerEmojis = ["✨", "🌸", "📌", "🍒", "🧸", "💌"];
 
 export function PhotoGrid({ photos, friendName }: PhotoGridProps) {
   return (
@@ -24,8 +23,6 @@ export function PhotoGrid({ photos, friendName }: PhotoGridProps) {
           "--offset": `${offset}px`,
         } as CSSProperties;
 
-        const sticker = stickerEmojis[index % stickerEmojis.length];
-
         return (
           <motion.figure
             key={`${photo}-${index}`}
@@ -36,10 +33,6 @@ export function PhotoGrid({ photos, friendName }: PhotoGridProps) {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: index * 0.05 }}
           >
-            <span className="polaroid-tape" aria-hidden="true" />
-            <span className="polaroid-sticker" aria-hidden="true">
-              {sticker}
-            </span>
             <div className="overflow-hidden rounded-xl">
               <Image
                 src={photo}

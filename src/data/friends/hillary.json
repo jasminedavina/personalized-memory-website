@@ -2,8 +2,8 @@
   "slug": "hillary",
   "name": "Hillary",
   "passcode": "hillary",
+  "videoPrefix": "hili",
   "passcodeBackground": "/photos/hilimain.png",
-  "redirectUrl": "/hillary/foto",
   "letter": [
     "Dear Hillary,",
     "Thank you for the gentle encouragement you always give.",

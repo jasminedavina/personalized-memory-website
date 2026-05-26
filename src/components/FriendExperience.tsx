@@ -8,11 +8,8 @@ type FriendExperienceProps = {
 };
 
 export function FriendExperience({ friend }: FriendExperienceProps) {
-  const canvaLink = "https://canva.link/reztw4tvj1by95x";
-  const redirectUrl = friend.redirectUrl ?? canvaLink;
-  const redirectMessage = friend.redirectUrl
-    ? "Opening your video scrapbook..."
-    : "Opening your Canva scrapbook...";
+  const redirectUrl = friend.redirectUrl ?? `/${friend.slug}/foto`;
+  const redirectMessage = "Opening your video scrapbook...";
 
   return (
     <div className="relative min-h-screen">

@@ -112,7 +112,7 @@ export function EnvelopeIntro({
               handleContinue();
             }
           }}
-          className="rounded-full border border-foreground/15 bg-card px-6 py-2 text-sm font-semibold text-foreground transition hover:opacity-90 disabled:cursor-default disabled:opacity-60"
+          className="theme-button rounded-full px-6 py-2 text-sm font-semibold transition hover:opacity-90 disabled:cursor-default disabled:opacity-60"
           disabled={isOpen && !showContinue}
         >
           {isOpen ? (showContinue ? "Tap to continue" : "Opening...") : "Open letter"}

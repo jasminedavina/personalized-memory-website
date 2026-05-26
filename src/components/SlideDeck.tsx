@@ -160,36 +160,6 @@ const slideVariants: Variants = {
   },
 };
 
-function SlideEffects({
-  transitionStyle,
-  slideKey,
-}: {
-  transitionStyle: SlideTransition;
-  slideKey: string;
-}) {
-  return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={`effects-${slideKey}`}
-        className={`slide-effects effect-${transitionStyle}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.6 }}
-        aria-hidden="true"
-      >
-        <span className="effect-petal petal-1" />
-        <span className="effect-petal petal-2" />
-        <span className="effect-petal petal-3" />
-        <span className="effect-confetti confetti-1" />
-        <span className="effect-confetti confetti-2" />
-        <span className="effect-sparkle sparkle-1" />
-        <span className="effect-sparkle sparkle-2" />
-      </motion.div>
-    </AnimatePresence>
-  );
-}
-
 export function SlideDeck({
   slides,
   initialIndex = 0,
@@ -313,10 +283,6 @@ export function SlideDeck({
       role="group"
       aria-label="Scrapbook slide deck"
     >
-      <SlideEffects
-        transitionStyle={transitionStyle}
-        slideKey={slide.id}
-      />
       <AnimatePresence mode="wait" custom={{ direction, transitionStyle }}>
         <motion.div
           key={slide.id}

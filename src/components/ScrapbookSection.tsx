@@ -29,8 +29,6 @@ export function ScrapbookSection({
         <div className="scrapbook-sheet sheet-1" aria-hidden="true" />
         <div className="scrapbook-sheet sheet-2" aria-hidden="true" />
         <div className="scrapbook-page">
-          <span className="tape tape-left" aria-hidden="true" />
-          <span className="tape tape-right" aria-hidden="true" />
           {children}
         </div>
       </div>
