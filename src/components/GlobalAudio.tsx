@@ -68,7 +68,12 @@ export function GlobalAudioProvider({
     if (!audio) {
       return;
     }
-    if (hasStarted && !audio.paused) {
+    if (hasStarted && !audio.paused && !audio.muted) {
+      return;
+    }
+    if (!audio.paused && audio.muted) {
+      audio.muted = false;
+      fadeIn();
       return;
     }
     const playPromise = audio.play();
@@ -87,10 +92,8 @@ export function GlobalAudioProvider({
           if (mutedPlayPromise) {
             mutedPlayPromise
               .then(() => {
-                audio.muted = false;
                 setIsPlaying(true);
                 setHasStarted(true);
-                fadeIn();
               })
               .catch(() => {
                 setIsPlaying(false);
@@ -120,7 +123,7 @@ export function GlobalAudioProvider({
         if (currentSrc !== src) {
           audio.src = src;
         }
-      } catch (e) {
+      } catch {
         audio.src = src;
       }
     } else {
