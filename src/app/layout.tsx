@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Caveat, Nunito, Special_Elite } from "next/font/google";
-import { GlobalAudioProvider } from "@/components/GlobalAudio";
 import "./globals.css";
+import ClientProviders from "@/components/ClientProviders";
 
 const nunito = Nunito({
   variable: "--font-body",
@@ -37,9 +37,7 @@ export default function RootLayout({
       className={`${nunito.variable} ${caveat.variable} ${specialElite.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <GlobalAudioProvider src="/music/letter.mp3">
-          {children}
-        </GlobalAudioProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

@@ -35,10 +35,10 @@
   "music": "/music/letter.mp3",
   "farewell": "Thanks for the joy you bring. I will always remember.",
   "theme": {
-    "background": "#FFF6E6",
+    "background": "#A7D8FF",
     "foreground": "#2C2015",
     "muted": "#7A5A3A",
-    "accent": "#F6B47B",
-    "card": "#FBE2C6"
+    "accent": "#F3A1A1",
+    "card": "#A7D8FF"
   }
 }

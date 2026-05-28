@@ -36,10 +36,10 @@
   "music": "/music/letter.mp3",
   "farewell": "Thank you for being in my story. I will always cheer for you.",
   "theme": {
-    "background": "#EAF4FF",
+    "background": "#A7D8FF",
     "foreground": "#1E2A3A",
     "muted": "#5E738A",
-    "accent": "#A7D7FF",
-    "card": "#F5FAFF"
+    "accent": "#F3A1A1",
+    "card": "#A7D8FF"
   }
 }

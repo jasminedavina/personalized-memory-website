@@ -35,10 +35,10 @@
   "music": "/music/letter.mp3",
   "farewell": "Thanks for all the laughs and support. See you soon.",
   "theme": {
-    "background": "#EFF9F3",
+    "background": "#DDE3EA",
     "foreground": "#1F2E27",
     "muted": "#4F6B5E",
-    "accent": "#8ED6B4",
-    "card": "#D6F1E0"
+    "accent": "#E5E5E5",
+    "card": "#DDE3EA"
   }
 }

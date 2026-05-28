@@ -35,10 +35,10 @@
   "music": "/music/letter.mp3",
   "farewell": "Thank you for bringing so much light into my life.",
   "theme": {
-    "background": "#FFF0F0",
+    "background": "#BFE8C2",
     "foreground": "#2C1C1C",
     "muted": "#7A4E4E",
     "accent": "#F3A1A1",
-    "card": "#FAD7D7"
+    "card": "#BFE8C2"
   }
 }

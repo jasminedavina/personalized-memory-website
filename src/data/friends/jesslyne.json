@@ -34,10 +34,10 @@
   "music": "/music/letter.mp3",
   "farewell": "Thank you for being by my side.",
   "theme": {
-    "background": "#F7F2FF",
+    "background": "#4A6FA5",
     "foreground": "#231E2F",
     "muted": "#5D566D",
-    "accent": "#C3A1FF",
-    "card": "#E6D7FF"
+    "accent": "#4A6FA5",
+    "card": "#4A6FA5"
   }
 }

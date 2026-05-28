@@ -1,0 +1,61 @@
+Project instructions — how to change videos, themes, and add friends
+
+1) Where to put video files
+- Naming convention (drop-in): public/videos/{slug}foto.mp4
+  public/videos/{slug}letter.mp4
+  public/videos/{slug}end.mp4
+- Example for friend 'hillary' with videoPrefix "hili":
+  public/videos/hilifoto.mp4
+  public/videos/hililetter.mp4
+  public/videos/hiliend.mp4
+
+2) How the video flow works (per friend)
+- /{slug}/foto  — plays the "foto" video. Tap the video to continue to the letter page.
+- /{slug}/letter — plays the "letter" video. When that video ends, the page automatically replaces it with the "end" video and plays it.
+- The letter page also shows a "Return to scrapbook home" button.
+
+3) If you prefer separate route for the end page
+- Current implementation plays end.mp4 on the letter page after the letter video ends.
+- To change to a separate page (/{slug}/end), you can implement a new route under src/app/[friend]/end/page.tsx.
+  Note: the codebase currently uses the letter -> end swap to avoid extra route directories.
+
+4) Per-friend theme and metadata
+- Edit friend JSON files at src/data/friends/*.json
+- Theme object example:
+  "theme": {
+    "background": "#EAF4FF",
+    "foreground": "#1E2A3A",
+    "muted": "#5E738A",
+    "accent": "#A7D7FF",
+    "card": "#F5FAFF"
+  }
+- These values are applied as CSS variables on the friend page root (src/app/[friend]/page.tsx). Change them and rebuild.
+
+5) Audio / music behavior
+- Background music for a friend is read from each friend JSON: the "music" property (e.g., "/music/letter.mp3").
+- The audio provider has been moved into the friend page so music starts automatically for friend pages. Put audio files in public/music/ and reference them in the friend JSON.
+- GlobalAudioProvider attempts to start playback on page load; browsers may still block autoplay in some cases.
+
+6) Adding a new friend
+- Add a JSON file under src/data/friends/, following the shape in existing files (slug, name, passcode, theme, letter, photos, timeline, music optional, videoPrefix optional).
+- If the video filenames don't follow slug-based convention, set "videoPrefix" to the base filename prefix (e.g., "hili" to use "hilifoto.mp4").
+- Add the friend JSON into src/data/friends.ts list (the file imports JSON files in a static list).
+
+7) Styling and removing ornaments
+- Global style rules live in src/app/globals.css. Many decorative elements (tape, petal effects) live there — remove or tweak styles if you want to change visual details.
+
+8) Linting and building
+- Dev server: npm run dev
+- Build: npm run build
+- Lint: npm run lint
+
+9) Troubleshooting
+- If audio doesn't autoplay on some browsers, try visiting the page and interacting once (tap or press a key). The provider also listens for first pointerdown/keydown and will start then.
+- If a video does not load, check file path under public/videos/ and ensure the filename matches the expected pattern.
+
+If you want, I can:
+- Convert the end video to a separate route (/[friend]/end).
+- Add per-route music fallback or UI controls.
+- Generate a small checklist script to verify that each friend has the three videos and their music file present.
+
+— End of instructions

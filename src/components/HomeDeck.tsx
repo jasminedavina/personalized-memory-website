@@ -65,7 +65,7 @@ export function HomeDeck({ friends }: HomeDeckProps) {
               <div className="choice-typing text-center">
                 <div className="font-letter text-sm text-foreground sm:text-base">
                   <TypewriterLetter
-                    lines={["click your picture to open your scrapbook 💛"]}
+                    lines={["click your picture to open 💛"]}
                   />
                 </div>
               </div>
