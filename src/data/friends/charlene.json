@@ -35,10 +35,10 @@
   "music": "/music/letter.mp3",
   "farewell": "I am grateful for you. Thank you for everything.",
   "theme": {
-    "background": "#F3F0FF",
+    "background": "#A7D8FF",
     "foreground": "#231F2E",
     "muted": "#5E5A72",
-    "accent": "#BCA7FF",
-    "card": "#E2D9FF"
+    "accent": "#F3A1A1",
+    "card": "#A7D8FF"
   }
 }

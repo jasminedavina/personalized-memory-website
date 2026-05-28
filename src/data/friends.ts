@@ -57,14 +57,26 @@ const friends: FriendData[] = [
   gabyJson,
 ];
 
+function normalizeSlug(slug: string): string {
+  return slug.trim().toLowerCase();
+}
+
+const normalizedFriends: FriendData[] = friends.map((friend) => ({
+  ...friend,
+  slug: normalizeSlug(friend.slug),
+}));
+
 export function getFriends(): FriendData[] {
-  return friends;
+  return normalizedFriends;
 }
 
 export function getFriendBySlug(slug: string): FriendData | undefined {
-  return friends.find((friend) => friend.slug === slug);
+  const normalizedSlug = normalizeSlug(slug);
+  return normalizedFriends.find(
+    (friend) => normalizeSlug(friend.slug) === normalizedSlug
+  );
 }
 
 export function getFriendSlugs(): string[] {
-  return friends.map((friend) => friend.slug);
+  return normalizedFriends.map((friend) => friend.slug);
 }

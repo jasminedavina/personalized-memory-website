@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getFriendBySlug, getFriendSlugs } from "@/data/friends";
+import FriendLetterClient from "@/components/FriendLetterClient";
 
 type FriendLetterPageProps = {
   params: Promise<{
@@ -22,25 +23,16 @@ export default async function FriendLetterPage({ params }: FriendLetterPageProps
   }
 
   const videoPrefix = friend.videoPrefix ?? friend.slug;
-  const videoSrc = `/videos/${videoPrefix}letter.mp4`;
+
+  const endHref = `/${friend.slug}/end`;
 
   return (
     <div className="video-stage">
       <div className="video-frame">
-        <div className="video-link">
-          <video
-            className="video-media"
-            src={videoSrc}
-            autoPlay
-            muted
-            playsInline
-          />
-        </div>
-        <div className="video-actions">
-          <Link href="/" className="ribbon-button">
-            Return to scrapbook home
-          </Link>
-        </div>
+        <Link href={endHref} className="video-link" aria-label="Open the end video">
+          <video className="video-media" src={`/videos/${videoPrefix}letter.mp4`} autoPlay muted playsInline />
+          <span className="video-hint">Tap to continue →</span>
+        </Link>
       </div>
     </div>
   );

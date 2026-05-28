@@ -89,6 +89,42 @@ export function GlobalAudioProvider({
     fadeIn();
   }, [fadeIn, hasStarted]);
 
+  // On mount, create or reuse a single global audio element so playback survives route changes
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const win = window as any;
+    let audio: HTMLAudioElement | null = null;
+
+    if (win.__GLOBAL_AUDIO_ELEMENT) {
+      audio = win.__GLOBAL_AUDIO_ELEMENT as HTMLAudioElement;
+      // update src if different
+      try {
+        const currentSrc = new URL(audio.src).pathname;
+        if (currentSrc !== src) {
+          audio.src = src;
+        }
+      } catch (e) {
+        audio.src = src;
+      }
+    } else {
+      audio = document.createElement("audio");
+      audio.src = src;
+      audio.preload = "auto";
+      // keep loop off by default per user preference
+      audio.loop = false;
+      // make it non-displayed and lightweight
+      audio.style.display = "none";
+      document.body.appendChild(audio);
+      win.__GLOBAL_AUDIO_ELEMENT = audio;
+    }
+
+    audioRef.current = audio;
+
+    return () => {
+      // Intentionally do not remove the global audio element on unmount so it persists
+    };
+  }, [src]);
+
   const stop = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) {
@@ -103,6 +139,9 @@ export function GlobalAudioProvider({
     if (!autoStart) {
       return;
     }
+    // Try to start immediately on mount. Browsers may block autoplay if no user gesture;
+    // in that case, fall back to starting on the first pointerdown/keydown.
+    start();
     const handleStart = () => start();
     window.addEventListener("pointerdown", handleStart, { once: true });
     window.addEventListener("keydown", handleStart, { once: true });
@@ -112,10 +151,10 @@ export function GlobalAudioProvider({
     };
   }, [autoStart, start]);
 
+  // No JSX audio element: create/reuse a single global <audio> element so it persists
   return (
     <GlobalAudioContext.Provider value={{ start, stop, isPlaying }}>
       {children}
-      <audio ref={audioRef} src={src} preload="auto" loop />
     </GlobalAudioContext.Provider>
   );
 }

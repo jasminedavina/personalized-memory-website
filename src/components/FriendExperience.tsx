@@ -1,6 +1,7 @@
 "use client";
 
 import { PasscodeGate } from "@/components/PasscodeGate";
+import { GlobalAudioProvider } from "@/components/GlobalAudio";
 import type { FriendData } from "@/data/friends";
 
 type FriendExperienceProps = {
@@ -13,13 +14,15 @@ export function FriendExperience({ friend }: FriendExperienceProps) {
 
   return (
     <div className="relative min-h-screen">
-      <PasscodeGate
-        passcode={friend.passcode}
-        friendName={friend.name}
-        passcodeBackground={friend.passcodeBackground}
-        redirectUrl={redirectUrl}
-        redirectMessage={redirectMessage}
-      />
+      
+        <PasscodeGate
+          passcode={friend.passcode}
+          friendName={friend.name}
+          passcodeBackground={friend.passcodeBackground}
+          redirectUrl={redirectUrl}
+          redirectMessage={redirectMessage}
+        />
+      
     </div>
   );
 }

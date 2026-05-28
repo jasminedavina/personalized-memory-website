@@ -35,10 +35,10 @@
   "music": "/music/letter.mp3",
   "farewell": "I am grateful for every memory with you.",
   "theme": {
-    "background": "#F0FFF7",
+    "background": "#FFB7D5",
     "foreground": "#203026",
     "muted": "#4E6E5F",
-    "accent": "#8ADDB8",
-    "card": "#D6F7E7"
+    "accent": "#A7D8FF",
+    "card": "#FFB7D5"
   }
 }
