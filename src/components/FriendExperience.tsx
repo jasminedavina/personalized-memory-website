@@ -10,7 +10,7 @@ type FriendExperienceProps = {
 
 export function FriendExperience({ friend }: FriendExperienceProps) {
   const redirectUrl = friend.redirectUrl ?? `/${friend.slug}/foto`;
-  const redirectMessage = "Opening your video scrapbook...";
+  const redirectMessage = "Opening your scrapbook...";
 
   return (
     <div className="relative min-h-screen">

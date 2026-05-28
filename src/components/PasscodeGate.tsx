@@ -115,7 +115,7 @@ export function PasscodeGate({
 
           {/* Subtitle */}
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-            This little scrapbook was made just for you 🌸
+            This little scrapbook was made just for you 🌸 
             <br />
             Enter the passcode to continue.
           </p>
