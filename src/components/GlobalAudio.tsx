@@ -75,11 +75,28 @@ export function GlobalAudioProvider({
     if (playPromise) {
       playPromise
         .then(() => {
+          audio.muted = false;
           setIsPlaying(true);
           setHasStarted(true);
           fadeIn();
         })
         .catch(() => {
+          audio.muted = true;
+          audio.volume = 0;
+          const mutedPlayPromise = audio.play();
+          if (mutedPlayPromise) {
+            mutedPlayPromise
+              .then(() => {
+                audio.muted = false;
+                setIsPlaying(true);
+                setHasStarted(true);
+                fadeIn();
+              })
+              .catch(() => {
+                setIsPlaying(false);
+              });
+            return;
+          }
           setIsPlaying(false);
         });
       return;
@@ -110,8 +127,7 @@ export function GlobalAudioProvider({
       audio = document.createElement("audio");
       audio.src = src;
       audio.preload = "auto";
-      // keep loop off by default per user preference
-      audio.loop = false;
+      audio.loop = true;
       // make it non-displayed and lightweight
       audio.style.display = "none";
       document.body.appendChild(audio);
