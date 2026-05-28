@@ -30,7 +30,7 @@ export function GlobalAudioProvider({
 }: GlobalAudioProviderProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const fadeTimerRef = useRef<number | null>(null);
-  const targetVolume = 0.35;
+  const targetVolume = 0.6;
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
 
