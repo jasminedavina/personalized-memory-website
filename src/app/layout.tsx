@@ -22,7 +22,7 @@ const specialElite = Special_Elite({
 });
 
 export const metadata: Metadata = {
-  title: "Personalized Memory Letters",
+  title: "Scrapbook for Sismance",
   description: "A private memory letter for each friend.",
 };
 
